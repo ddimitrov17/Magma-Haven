@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('../models/User');
+require('../models/Volcano')
 
 const connectionString = 'mongodb://localhost:27017/Magma-Haven';
 

@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, SchemaTypes, model } = require('mongoose');
 
 const volcanoSchema = new Schema({
     name: {
@@ -13,7 +13,7 @@ const volcanoSchema = new Schema({
         type: Number,
         required: true
     },
-    lastEruption: {
+    lastErruption: {
         type: Number,
         required: true
     },
@@ -21,7 +21,7 @@ const volcanoSchema = new Schema({
         type: String,
         required: true
     },
-    typeVolcano: {
+    type: {
         type: String,
         enum: ['Supervolcanoes', 'Submarine', 'Subglacial', 'Mud', 'Stratovolcanoes', 'Shield'],
         required: true

@@ -1,20 +1,25 @@
+const { getAllVolcanos, createVolcano } = require("../services/volcanoService");
+
 module.exports = {
-    homeGET: (req,res) => {
+    homeGET: (req, res) => {
         res.render('home');
     },
-    catalogGET: (req,res) => {
-        res.render('catalog');
+    catalogGET: async (req, res) => {
+        const volcanos = await getAllVolcanos();
+        res.render('catalog', { volcanos });
     },
-    createGET: (req,res) => {
+    createGET: (req, res) => {
         res.render('create');
     },
-    searchGET: (req,res) => {
+    searchGET: (req, res) => {
         res.render('search');
     },
-    errorGET: (req,res) => {
+    errorGET: (req, res) => {
         res.render('404');
     },
-    createPOST: async (req,res) => {
-        console.log(req.body);
+    createPOST: async (req, res) => {
+        const ownerId=req.user.id;
+        await createVolcano(req.body,ownerId);
+        res.redirect('/');
     }
 }
