@@ -1,4 +1,4 @@
-const { getAllVolcanos, createVolcano } = require("../services/volcanoService");
+const { getAllVolcanos, createVolcano, getVolcanoById } = require("../services/volcanoService");
 
 module.exports = {
     homeGET: (req, res) => {
@@ -18,8 +18,13 @@ module.exports = {
         res.render('404');
     },
     createPOST: async (req, res) => {
-        const ownerId=req.user.id;
-        await createVolcano(req.body,ownerId);
+        const ownerId = req.user.id;
+        await createVolcano(req.body, ownerId);
         res.redirect('/');
+    },
+    detailsGET: async (req, res) => {
+        const id = req.params.id;
+        const volcano = await getVolcanoById(id);
+        res.render('details', { volcano });
     }
 }

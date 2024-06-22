@@ -20,8 +20,14 @@ async function getAllVolcanos() {
     return volcanos; 
 }
 
+async function getVolcanoById(id) {
+    const volcano = await Volcano.findById(id).lean();
+    return volcano;
+}
+
 
 module.exports = {
     getAllVolcanos,
-    createVolcano
+    createVolcano,
+    getVolcanoById
 }
