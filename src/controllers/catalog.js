@@ -26,5 +26,11 @@ module.exports = {
         const id = req.params.id;
         const volcano = await getVolcanoById(id);
         res.render('details', { volcano });
+    },
+    editGET: async (req, res) => {
+        const id = req.params.id;
+        const volcano = await getVolcanoById(id);
+        const volcanoTypes = ['Supervolcanoes', 'Submarine', 'Subglacial', 'Mud', 'Stratovolcanoes', 'Shield'];
+        res.render('edit', { volcano, volcanoTypes });
     }
 }

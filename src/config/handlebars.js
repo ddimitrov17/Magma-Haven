@@ -2,7 +2,12 @@ const handlebars = require('express-handlebars');
 
 function configHandlebars(app) {
     const hbs = handlebars.create({
-        extname: '.hbs'
+        extname: '.hbs',
+        helpers: {
+            eq: function (a, b) {
+                return a === b;
+            }
+        }
     })
     app.engine('hbs', hbs.engine);
     app.set('view engine', 'hbs');

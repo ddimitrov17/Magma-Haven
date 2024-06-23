@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { homeGET, catalogGET, searchGET, createGET, errorGET, createPOST, detailsGET } = require('../controllers/catalog');
+const { homeGET, catalogGET, searchGET, createGET, errorGET, createPOST, detailsGET, editGET } = require('../controllers/catalog');
 const { registerGET, loginGET, registerPOST, loginPOST, logout } = require('../controllers/user');
 
 const router = Router();
@@ -12,6 +12,7 @@ router.get('/register', registerGET);
 router.get('/login', loginGET);
 router.get('/logout', logout);
 router.get('/details/:id',detailsGET);
+router.get('/edit/:id',editGET);
 
 router.post('/create/volcano', createPOST);
 router.post('/register', registerPOST);
