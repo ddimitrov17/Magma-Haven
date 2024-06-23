@@ -30,6 +30,7 @@ async function updateVolcano(volcanoId,volcanoData) {
     volcano.name = volcanoData.name;
     volcano.location=volcanoData.location;
     volcano.type=volcanoData.type;
+    volcano.image = volcanoData.image;
     volcano.elevation=volcanoData.elevation;
     volcano.lastErruption=volcanoData.lastErruption;
     volcano.description=volcanoData.description;
