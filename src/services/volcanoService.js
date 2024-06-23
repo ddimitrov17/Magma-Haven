@@ -25,9 +25,23 @@ async function getVolcanoById(id) {
     return volcano;
 }
 
+async function updateVolcano(volcanoId,volcanoData) {
+    let volcano = await Volcano.findById(volcanoId);
+    volcano.name = volcanoData.name;
+    volcano.location=volcanoData.location;
+    volcano.type=volcanoData.type;
+    volcano.elevation=volcanoData.elevation;
+    volcano.lastErruption=volcanoData.lastErruption;
+    volcano.description=volcanoData.description;
+
+    volcano.save();
+    return volcano;
+}
+
 
 module.exports = {
     getAllVolcanos,
     createVolcano,
-    getVolcanoById
+    getVolcanoById,
+    updateVolcano
 }

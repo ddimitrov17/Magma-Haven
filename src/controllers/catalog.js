@@ -1,4 +1,4 @@
-const { getAllVolcanos, createVolcano, getVolcanoById } = require("../services/volcanoService");
+const { getAllVolcanos, createVolcano, getVolcanoById, updateVolcano } = require("../services/volcanoService");
 
 module.exports = {
     homeGET: (req, res) => {
@@ -32,5 +32,11 @@ module.exports = {
         const volcano = await getVolcanoById(id);
         const volcanoTypes = ['Supervolcanoes', 'Submarine', 'Subglacial', 'Mud', 'Stratovolcanoes', 'Shield'];
         res.render('edit', { volcano, volcanoTypes });
+    },
+    editPOST: async (req,res) => {
+        const volcanoData=req.body;
+        const volcanoId = req.params.id;
+        await updateVolcano(volcanoId,volcanoData)
+        res.redirect('/details/' + volcanoId);
     }
 }
