@@ -40,5 +40,17 @@ module.exports = {
         const volcanoId = req.params.id;
         await updateVolcano(volcanoId, volcanoData)
         res.redirect('/details/' + volcanoId);
+    },
+    searchPOST: async (req, res) => {
+        const { name, type } = req.body;
+        const volcanos = await getAllVolcanos();
+        let matchingSearch = [];
+        for (let currentVolcano of volcanos) {
+            if (currentVolcano.name.includes(name) && currentVolcano.type == type) {
+                matchingSearch.push(currentVolcano);
+            }
+        }
+        let noMatches= matchingSearch.length==0;
+        res.render('search', { matchingSearch, noMatches });
     }
 }
