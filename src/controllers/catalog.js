@@ -25,7 +25,9 @@ module.exports = {
     detailsGET: async (req, res) => {
         const id = req.params.id;
         const volcano = await getVolcanoById(id);
-        res.render('details', { volcano });
+        const isOwner = volcano.owner.toString() == req?.user?.id;
+        const isLogged = req?.user?.id;
+        res.render('details', { volcano, isOwner, isLogged });
     },
     editGET: async (req, res) => {
         const id = req.params.id;
@@ -33,10 +35,10 @@ module.exports = {
         const volcanoTypes = ['Supervolcanoes', 'Submarine', 'Subglacial', 'Mud', 'Stratovolcanoes', 'Shield'];
         res.render('edit', { volcano, volcanoTypes });
     },
-    editPOST: async (req,res) => {
-        const volcanoData=req.body;
+    editPOST: async (req, res) => {
+        const volcanoData = req.body;
         const volcanoId = req.params.id;
-        await updateVolcano(volcanoId,volcanoData)
+        await updateVolcano(volcanoId, volcanoData)
         res.redirect('/details/' + volcanoId);
     }
 }
